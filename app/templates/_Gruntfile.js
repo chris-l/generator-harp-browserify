@@ -9,6 +9,15 @@ module.exports = function (grunt) {
     jshint  : {
       all     : ['package.json', 'Gruntfile.js', 'bower.json', 'harp.json', 'js/**/*.js']
     },
+    jslint  : {
+      all     : {
+        src : ['package.json', 'Gruntfile.js', 'bower.json', 'harp.json', 'js/**/*.js'],
+        directives : {
+          indent : 2,
+          node : true
+        }
+      }
+    },
     browserify: {
       dist: {
         files: {
@@ -30,13 +39,13 @@ module.exports = function (grunt) {
   });
 
   grunt.loadNpmTasks('grunt-browserify');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('<% if (useJSLint) { %>grunt-jslint<% } else { %>grunt-contrib-jshint<% } %>');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Default task(s).
   grunt.registerTask('default', [
-    'jshint',
+    '<% if (useJSLint) { %>jslint<% } else { %>jshint<% } %>',
     'browserify',
     'uglify',
     'clean'

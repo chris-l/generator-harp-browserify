@@ -42,11 +42,22 @@ HarpBrowserifyGenerator = yeoman.generators.Base.extend({
         name: 'google_analytics',
         message: 'What is your google analytics code? (leave it empty if you don\'t want to use GA - note that you can add it later on harp.json to enable GA anytime.)',
         default: ''
+      },
+      {
+        type: 'list',
+        name: 'lint',
+        message: 'What code linter would you prefer to use?',
+        choices: [
+          'jshint',
+          'jslint'
+        ],
+        default: 0
       }
     ];
 
     this.prompt(prompts, function (props) {
       this.description = props.description;
+      this.useJSLint = props.lint === 'jslint';
       this.google_analytics = props.google_analytics;
 
       done();
@@ -63,7 +74,7 @@ HarpBrowserifyGenerator = yeoman.generators.Base.extend({
     this.copy('_harp.json', 'harp.json');
     this.copy('main.js', 'js/main.js');
     this.copy('gitignore', '.gitignore');
-    this.copy('Gruntfile.js', 'Gruntfile.js');
+    this.copy('_Gruntfile.js', 'Gruntfile.js');
     this.copy('layout.jade', 'public/_layout.jade');
     this.copy('styles.less', 'public/css/styles.less');
     this.copy('index.jade', 'public/index.jade');
@@ -72,7 +83,9 @@ HarpBrowserifyGenerator = yeoman.generators.Base.extend({
 
   projectfiles: function () {
     this.copy('editorconfig', '.editorconfig');
-    this.copy('jshintrc', '.jshintrc');
+    if (!this.useJSLint) {
+      this.copy('jshintrc', '.jshintrc');
+    }
   }
 });
 

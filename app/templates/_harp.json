@@ -1,0 +1,8 @@
+{
+  "globals": {
+    "name": "<%= _.slugify(appname) %>",
+    "description" : "<%= _.slugify(description) %>",
+    "google_analytics" : "<%= _.slugify(google_analytics) %>"
+  }
+}
+

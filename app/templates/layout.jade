@@ -1,0 +1,33 @@
+doctype html
+html.no-js
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    title
+      != !!title ? title + ' - ' + name : name
+    meta(name='description', content='#{ description }')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    //- Place favicon.ico and apple-touch-icon(s) in the root directory
+    link(rel='shortcut icon', href='/favicon.png')
+    link(rel='stylesheet', href='/css/styles.css')
+  body
+    //- You can put your base design here
+
+    //- This line allows the use of "sublayouts", by means of using this file
+    //- as layout and using any local _sublayout file in the current directory.
+    //- That file should have the yield keyword.
+    //- If the _sublayout file does not exist in the current directory it will
+    //- use yield instead.
+    != partial( (current.path.slice(0, -1).join('/') || '') + '/_sublayout') || yield
+
+    script(src='/js/main.min.js')
+    //- For google analytics to work, just include your GA code in the harp.json file.
+    if google_analytics != ''
+      script.
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','#{ google_analytics }');ga('send','pageview');
+

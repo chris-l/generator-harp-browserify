@@ -1,0 +1,6 @@
+*.swp
+bower_components/
+node_modules/
+www/
+public/js/main.js
+public/js/main.min.js

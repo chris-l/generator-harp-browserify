@@ -6,10 +6,7 @@ module.exports = function (grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg     : grunt.file.readJSON('package.json'),
-    jshint  : {
-      all     : ['package.json', 'Gruntfile.js', 'bower.json', 'harp.json', 'js/**/*.js']
-    },
-    jslint  : {
+    <% if (useJSLint) { %>jslint  : {
       all     : {
         src : ['package.json', 'Gruntfile.js', 'bower.json', 'harp.json', 'js/**/*.js'],
         directives : {
@@ -17,7 +14,9 @@ module.exports = function (grunt) {
           node : true
         }
       }
-    },
+    },<% } else { %>jshint  : {
+      all     : ['package.json', 'Gruntfile.js', 'bower.json', 'harp.json', 'js/**/*.js']
+    },<% } %>
     browserify: {
       dist: {
         files: {

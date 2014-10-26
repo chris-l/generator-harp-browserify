@@ -20,34 +20,24 @@ module.exports = function (grunt) {
     browserify: {
       dist: {
         files: {
-          'public/js/main.js': ['js/main.js']
+          'public/js/main.min.js': ['js/main.js']
         },
         options: {
-          transform: [ 'browserify-shim' ]
+          transform: [ 'browserify-shim' ],
+          browserifyOptions : { debug : true },
+          plugin: [ [ 'minifyify', { map: '/js/main.map.json', output: 'public/js/main.map.json' } ] ]
         }
       }
-    },
-    uglify  : {
-      target : {
-        files : { 'public/js/main.min.js' : 'public/js/main.js' }
-      },
-      options: {
-      }
-    },
-    clean : [ 'public/js/main.js' ]
+    }
   });
 
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('<% if (useJSLint) { %>grunt-jslint<% } else { %>grunt-contrib-jshint<% } %>');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Default task(s).
   grunt.registerTask('default', [
     '<% if (useJSLint) { %>jslint<% } else { %>jshint<% } %>',
-    'browserify',
-    'uglify',
-    'clean'
+    'browserify'
   ]);
 
 };

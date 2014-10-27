@@ -68,6 +68,7 @@ HarpBrowserifyGenerator = yeoman.generators.Base.extend({
     this.mkdir('js');
     this.mkdir('public');
     this.mkdir('public/css');
+    this.mkdir('public/css/image');
 
     this.copy('_package.json', 'package.json');
     this.copy('_bower.json', 'bower.json');

@@ -30,7 +30,7 @@ HarpBrowserifyGenerator = yeoman.generators.Base.extend({
     console.log(this.yeoman);
 
     // replace it with a short and sweet description of your generator
-    console.log(chalk.magenta('You\'re using the fantastic HarpBrowserify generator.'));
+    console.log(chalk.magenta('Harp-Browserify generator.'));
 
     prompts = [
       {

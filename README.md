@@ -2,7 +2,7 @@
 
 > [Yeoman](http://yeoman.io) generator
 
-Generator for an static site based on Harp with Browserify included.
+Generator for creating static sites based on [Harp](http://harpjs.com) that have [Browserify](http://browserify.org) included.
 
 It uses [grunt](http://gruntjs.com) as the task runner. It also allows to use [jslint](http://www.jslint.com) or [jshint](http://jshint.com).
 

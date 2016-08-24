@@ -13,6 +13,6 @@
     "jquery": "~2.1.0",
     "modernizr": "~2.7.1",
     "bootstrap": "~3.1.1",
-    "less-elements": "*"
+    "less-elements": "https://github.com/thesnews/less-elements.git#02ee57066862972b83dd0fa10d22d489df533e47"
   }
 }

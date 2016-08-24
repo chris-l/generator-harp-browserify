@@ -2,16 +2,13 @@
   "name": "<%= _.slugify(appname) %>",
   "version": "0.0.0",
   "description": "",
-  "dependencies": {
-    "browserify": "^3.32.1",
-    "browserify-shim": "^3.3.1",
-    "minifyify": "^4.4.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "grunt": "~0.4.2",
-    <% if (useJSLint) { %>"grunt-jslint": "^1.1.12"<% }
-      else { %>"grunt-contrib-jshint": "~0.6.3"<% } %>,
-    "grunt-browserify": "^3.0.1"
+    "browserify": "11.0.0",
+    "browserify-shim": "3.8.11",
+    <% if (useJSLint) { %>"jslint": "0.9.6"<% }
+      else { %>"jshint": "2.9.3"<% } %>,
+    "uglify": "0.1.5"
   },
   "browser": {
     "jquery": "./bower_components/jquery/dist/jquery.js",
@@ -26,5 +23,11 @@
       ]
     },
     "modernizr" : "Modernizr"
+  },
+  "scripts": {
+    "test": <% if (useJSLint) { %>"node_modules/jslint/bin/jslint.js --indent 2 --color 'package.json' 'bower.json' 'harp.json' 'js/**/*.js'"<% }
+      else { %>"node_modules/jshint/bin/jshint -c .jshintrc js/"<% } %>,
+    "build": "npm test && mkdir -p public/js && node_modules/browserify/bin/cmd.js js/main.js -t browserify-shim | node_modules/uglify-js/bin/uglifyjs -o public/js/main.min.js",
+    "dev": "npm test && mkdir -p public/js && node_modules/browserify/bin/cmd.js js/main.js -d -t browserify-shim > public/js/main.min.js"
   }
 }

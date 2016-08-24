@@ -15,7 +15,7 @@ HarpBrowserifyGenerator = yeoman.generators.Base.extend({
     this.on('end', function () {
       this.installDependencies({
         callback: function () {
-          this.spawnCommand('grunt');
+          this.spawnCommand('npm', ['run-script', 'dev']);
         }.bind(this) // bind the callback to the parent scope
       });
     });
@@ -75,7 +75,6 @@ HarpBrowserifyGenerator = yeoman.generators.Base.extend({
     this.copy('_harp.json', 'harp.json');
     this.copy('main.js', 'js/main.js');
     this.copy('gitignore', '.gitignore');
-    this.copy('_Gruntfile.js', 'Gruntfile.js');
     this.copy('layout.jade', 'public/_layout.jade');
     this.copy('styles.less', 'public/css/styles.less');
     this.copy('index.jade', 'public/index.jade');
